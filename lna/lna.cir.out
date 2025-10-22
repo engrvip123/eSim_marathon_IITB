@@ -1,0 +1,60 @@
+.title kicad schematic
+
+*.include NMOS-180nm.lib
+.lib $PDK_ROOT/$PDK/libs.tech/ngspice/models/cornerMOShv.lib   mos_tt
+.lib $PDK_ROOT/$PDK/libs.tech/ngspice/models/cornerCAP.lib cap_typ
+
+v3 vdd gnd  dc 3.3
+xm1 n3 vdd n2a gnd sg13_hv_nmos W=100u L=0.45u M=2
+xm2 n2 n4  n1  gnd sg13_hv_nmos W=100u L=0.45u M=2
+ld vdd n3 30n
+*cd vdd n3 5p
+*rd vdd n3 5000
+c1 n3  out 5p
+
+ls n1 gnd 0.5n
+lg inp n4 25n
+
+v1 inp gnd dc 0.95 ac 1 portnum 1 z0 50
+v2 out gnd dc 0         portnum 2 z0 50
+
+v5 n2a  n2  0
+
+* Control Statements 
+
+.control
+set appendwrite
+
+* --- S-parameters ---
+op
+sp lin 1000 0.5e9 3e9
+let s11db = 20*log10(abs(s_1_1))
+let s21db = 20*log10(abs(s_2_1))
+let s12db = 20*log10(abs(s_1_2))
+let s22db = 20*log10(abs(s_2_2))
+plot s11db s21db s12db s22db
+
+* --- AC + Noise for NF ---
+ac dec 200 0.5e9 3e9
+noise v(out) v1 dec 200 0.5e9 3e9
+
+setplot ac1
+let G = abs(v(out)/v(inp)) * abs(v(out)/v(inp))
+setplot noise1
+let G = ac1.G
+
+let k=1.380649e-23
+let T=300
+let Rs=50
+let NF=10*log10(onoise_spectrum/(4*k*T*Rs*G))
+plot NF
+
+* --- Write both S-params and NF into same RAW ---
+setplot sp1
+write lna.cir.out.raw s11db s21db s12db s22db
+setplot noise1
+write lna.cir.out.raw NF
+.endc
+.end
+
+.end

@@ -1,0 +1,13 @@
+.title KiCad schematic
+v2 /vdd GND DC
+M1 /n3 /vdd /n2 GND eSim_MOS_N
+C1 /n3 out capacitor
+L2 /vdd /n3 inductor
+U2 out plot_v1
+v3 out GND DC
+L3 /n1 GND inductor
+L1 inp /n4 inductor
+U1 inp plot_v1
+v1 inp GND DC
+M2 /n2 /n4 /n1 GND eSim_MOS_N
+.end

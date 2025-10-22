@@ -1,0 +1,18 @@
+.title kicad schematic
+
+v1 in gnd sine(1V 100mV 1K 0 0)
+* u1 in plot_v1
+* u2 out plot_v1
+r1 in out 1000
+c1 out gnd 1u
+.tran 1e-06 10000e-06 0e-06
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+plot v(in)
+plot v(out)
+.endc
+.end

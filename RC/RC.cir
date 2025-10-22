@@ -1,0 +1,7 @@
+.title KiCad schematic
+v1 in GND sine
+U1 in plot_v1
+U2 out plot_v1
+R1 in out 1000
+C1 out GND 1u
+.end
