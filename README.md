@@ -5,25 +5,6 @@
 [![Open-Source EDA](https://img.shields.io/badge/EDA-Open%20Source-success)](#)
 [![Technology](https://img.shields.io/badge/PDK-IHP%20SG13G2-lightgrey)](#)
 
-**Author:** Vipul Sharma  
-📧 [engr.vipul@gmail.com](mailto:engr.vipul@gmail.com)
-
----
-
-## Table of Contents
-1. [Introduction](#1-introduction)
-   - [Objective](#11-objective)
-2. [Project Overview](#2-project-overview)
-3. [Circuit Design](#3-circuit-design)
-   - [Circuit Description](#31-circuit-description)
-   - [Circuit Schematic](#32-circuit-schematic)
-4. [Simulation and Results](#4-simulation-and-results)
-   - [Simulation Setup](#41-simulation-setup)
-   - [Results](#42-results)
-5. [Discussion](#5-discussion)
-6. [Conclusion](#6-conclusion)
-7. [References](#7-references)
-
 ---
 
 ## 1. Introduction
